@@ -25,9 +25,7 @@ public class FileEncryptionAES {
 
     
     
-   // static SecretKey secretKey = null;
-   // static Cipher cipher = null;
-   // SecretKey desKey;
+  
     Cipher cipher;
     SecretKeySpec skeySpec;
     IvParameterSpec ivspec;
@@ -36,14 +34,7 @@ public class FileEncryptionAES {
     public FileEncryption() {
         try {
            
-            //keyGenerator = KeyGenerator.getInstance("DES");
             
-            //secretKey = new SecretKeySpec(Diary.userKey.getBytes(), "DES");
-           /* DESKeySpec dks = new DESKeySpec(Diary.userKey.getBytes());
-            SecretKeyFactory skf = SecretKeyFactory.getInstance("DES");
-            desKey = skf.generateSecret(dks);
-            cipher = Cipher.getInstance("DES");
-            */
             KeyGenerator keygen = KeyGenerator.getInstance("AES");
             keygen.init(128);  // To use 256 bit keys, you need the "unlimited strength" encryption policy files from Sun.
             byte[] key = keygen.generateKey().getEncoded();
@@ -57,7 +48,6 @@ public class FileEncryptionAES {
 
             // initialize the cipher for encrypt mode
             cipher = Cipher.getInstance("AES/GCM/NoPadding");
-            //System.out.println(desKey);
 
             System.out.println("Key: " + new String(key, "utf-8") + " This is important when decrypting");
             System.out.println("IV: " + new String(iv, "utf-8") + " This is important when decrypting");
